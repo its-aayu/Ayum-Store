@@ -1,0 +1,103 @@
+/**
+ * AYUM design tokens.
+ * Source of truth: AYUM-IMPLEMENTATION.md sections 5–9.
+ * Do not hard-code these hex values anywhere else in the app.
+ */
+:root {
+  /* Brand */
+  --color-brand-primary: #710014;
+  --color-brand-secondary: #b38f6f;
+  --color-surface: #f2f1ed;
+  --color-ink: #161616;
+
+  --color-white: #ffffff;
+  --color-muted: #6b6865;
+
+  --color-success: #1f7a4d;
+  --color-warning: #a36a00;
+  --color-error: #b42318;
+
+  --color-border: rgba(22, 22, 22, 0.12);
+  --color-overlay: rgba(22, 22, 22, 0.65);
+
+  /* Derived shades (documented, not arbitrary) */
+  --color-brand-primary-hover: #8a0019;
+  --color-brand-primary-tint: #7100140d;
+  --color-ink-soft: #16161699;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* Radius */
+  --radius-button: 8px;
+  --radius-input: 9px;
+  --radius-card: 10px;
+  --radius-feature: 16px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(22, 22, 22, 0.06), 0 4px 16px rgba(22, 22, 22, 0.06);
+  --shadow-modal: 0 8px 24px rgba(22, 22, 22, 0.16), 0 2px 8px rgba(22, 22, 22, 0.08);
+  --shadow-nav: 0 1px 0 rgba(22, 22, 22, 0.08);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Motion */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+}
+
+@theme {
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-primary-hover: var(--color-brand-primary-hover);
+  --color-brand-secondary: var(--color-brand-secondary);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-white: var(--color-white);
+  --color-muted: var(--color-muted);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-border: var(--color-border);
+  --color-overlay: var(--color-overlay);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  --radius-button: var(--radius-button);
+  --radius-input: var(--radius-input);
+  --radius-card: var(--radius-card);
+  --radius-feature: var(--radius-feature);
+  --radius-pill: var(--radius-pill);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-modal: var(--shadow-modal);
+  --shadow-nav: var(--shadow-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
