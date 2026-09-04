@@ -71,7 +71,10 @@ export function HomePage() {
         <section className="py-16 sm:py-20">
           <Container>
             <div className="mb-8 flex items-end justify-between">
-              <h2 className="text-2xl font-semibold sm:text-3xl">Featured Designs</h2>
+              <div>
+                <h2 className="text-2xl font-semibold sm:text-3xl">Featured Designs</h2>
+                <p className="mt-1 text-sm text-muted">Limited edition — only 50 pieces of each design.</p>
+              </div>
               <Link to="/shop" className="text-sm font-medium text-brand-primary hover:underline">
                 View all
               </Link>
@@ -113,11 +116,14 @@ export function HomePage() {
       {/* Custom design CTA */}
       <section className="py-16 sm:py-20">
         <Container className="flex flex-col items-center gap-6 rounded-feature bg-brand-primary px-6 py-14 text-center text-white sm:py-20">
+          <span className="rounded-pill bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+            Coming soon
+          </span>
           <h2 className="max-w-xl font-display text-3xl font-semibold sm:text-4xl">
             Have a design in mind? Bring it to life.
           </h2>
           <p className="max-w-md text-sm text-white/80">
-            Upload your own artwork, preview it instantly, and order it on AYUM apparel and products.
+            Upload-your-own-artwork is on its way. Leave your interest now and we'll notify you the moment it opens.
           </p>
           <Link to="/custom" className="inline-flex h-13 items-center justify-center rounded-button bg-white px-8 text-base font-medium text-brand-primary hover:bg-white/90">
             Create Your Own
@@ -131,9 +137,9 @@ export function HomePage() {
           <h2 className="mb-10 text-2xl font-semibold sm:text-3xl">How It Works</h2>
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { icon: Upload, title: 'Browse or Upload', body: 'Pick an original AYUM design, or upload your own.' },
-              { icon: MessageCircle, title: 'Confirm on WhatsApp', body: 'We confirm price, availability and delivery with you directly.' },
-              { icon: Package, title: 'Printed & Shipped', body: 'Your order is printed, quality-checked and shipped to you.' },
+              { icon: Upload, title: 'Browse Designs', body: 'Pick from our limited-edition AYUM designs — only 50 pieces of each.' },
+              { icon: MessageCircle, title: 'Show Interest on WhatsApp', body: "Tell us what you like — we'll confirm price, availability and delivery with you directly." },
+              { icon: Package, title: 'Printed & Shipped', body: 'Once confirmed, your order is printed, quality-checked and shipped to you.' },
             ].map((step) => (
               <div key={step.title}>
                 <step.icon className="h-6 w-6 text-brand-primary" aria-hidden="true" />

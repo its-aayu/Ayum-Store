@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Upload, Shirt, ShieldCheck, MessageCircle, ShoppingBag } from 'lucide-react';
+import { Upload, Shirt, ShieldCheck, MessageCircle, ShoppingBag, Clock } from 'lucide-react';
 import { Container } from '@/components/common/Container';
 import { Image } from '@/components/common/Image';
 import { Button } from '@/components/common/Button';
@@ -19,9 +19,14 @@ import { formatPrice } from '@/utils/money';
 import { generateOrderRequestId } from '@/utils/id';
 import { validateVariantSelection } from '@/utils/variantValidation';
 import { getGarmentTemplate } from '@/utils/garmentTemplate';
+import { generateCustomDesignInterestUrl } from '@/services/whatsapp/generateWhatsAppOrderUrl';
 import { cn } from '@/utils/cn';
 
 const customizableProducts = products.filter((p) => p.allowCustomDesign && p.available);
+
+// The upload → preview → order flow below is fully built and tested, but not opened to
+// customers yet. Flip this to re-enable it — nothing else needs to change.
+const CUSTOM_DESIGN_ENABLED = false;
 
 const HOW_IT_WORKS = [
   { icon: Upload, title: 'Upload', body: 'Add your artwork — PNG, JPG, WEBP or PDF, up to 10 MB.' },
@@ -139,7 +144,8 @@ export function CustomDesignPage() {
             Your design. Our craft.
           </h1>
           <p className="max-w-lg text-sm text-white/80 sm:text-base">
-            Upload your artwork, preview it instantly, and we'll review it personally before anything goes to print.
+            Upload your artwork, preview it instantly, and we'll review it personally before anything goes to
+            print — launching soon.
           </p>
         </Container>
       </section>
@@ -163,6 +169,7 @@ export function CustomDesignPage() {
         </Container>
       </section>
 
+      {CUSTOM_DESIGN_ENABLED ? (
       <Container className="py-10 sm:py-14">
         <div className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-2">
           <div className="space-y-8">
@@ -294,6 +301,32 @@ export function CustomDesignPage() {
           </div>
         </div>
       </Container>
+      ) : (
+        <Container className="py-14 sm:py-20">
+          <div className="mx-auto max-w-lg rounded-feature border border-border bg-white p-8 text-center sm:p-10">
+            <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-primary/10">
+              <Clock className="h-6 w-6 text-brand-primary" aria-hidden="true" />
+            </span>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-brand-primary">Coming soon</p>
+            <h2 className="mt-2 text-xl font-semibold text-ink sm:text-2xl">
+              Upload-your-own-design isn't open yet
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              We're finishing print-quality review and mockup previews before opening this to everyone. Leave your
+              details on WhatsApp and we'll notify you the moment it's live.
+            </p>
+            <a
+              href={generateCustomDesignInterestUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-button bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-primary/90"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              Notify me on WhatsApp
+            </a>
+          </div>
+        </Container>
+      )}
       <WhatsAppFallbackModal message={fallback?.message ?? null} onClose={closeFallback} />
     </>
   );

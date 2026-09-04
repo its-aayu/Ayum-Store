@@ -27,6 +27,43 @@ const JOBS = [
 
 const MAX_DIMENSION = 1920;
 
+// Product photography — cropped to a fixed 4:5 (matches how every product image renders
+// across the site: ProductCard, ImageGallery, cart thumbnails). Only products with usable,
+// non-infringing photos are listed here — see README/AYUM-IMPLEMENTATION.md notes on the
+// products still marked `comingSoon` in src/data/products.ts.
+const PRODUCT_JOBS = [
+  // Oversized Graphic Tee and Classic Crest Tee are deliberately NOT listed here — the source
+  // photos provided for them (src/assets/Oversized Graphic Tee*.jpeg, Classic Crest Tee*.jpeg)
+  // are real photos of unlicensed anime merchandise (Bleach / Jujutsu Kaisen / One Piece), not
+  // AYUM designs. Both products stay on `comingSoon: true` in src/data/products.ts until real,
+  // rights-cleared photography exists — do not add jobs for those filenames.
+  // Heavyweight Pullover Hoodie — Back.jpeg is also excluded: it shows unlicensed Demon Slayer
+  // merchandise, not an AYUM design. The product ships with only its front photo.
+  { src: 'Heavyweight Pullover Hoodie — Front.jpeg', out: 'products/hoodies/heavyweight-pullover-hoodie-1.jpg' },
+  { src: 'crewneck sweatshirt.png', out: 'products/sweatshirts/crewneck-sweatshirt-1.jpg' },
+  { src: 'Structured Cap.jpeg', out: 'products/caps/structured-cap-1.jpg' },
+  { src: 'Dad Cap.jpeg', out: 'products/caps/dad-cap-1.jpg' },
+  { src: 'Ceramic Mug — Front.jpeg', out: 'products/mugs/ceramic-mug-1.jpg' },
+  { src: 'Ceramic Mug — another angle Angle.jpeg', out: 'products/mugs/ceramic-mug-2.jpg' },
+  { src: 'Matte Black Mug — Front.jpeg', out: 'products/mugs/matte-black-mug-1.jpg' },
+  { src: 'Matte Black Mug — another angel.jpeg', out: 'products/mugs/matte-black-mug-2.jpg' },
+];
+
+async function processProductPhotos() {
+  for (const job of PRODUCT_JOBS) {
+    const srcPath = path.join(SRC, job.src);
+    const outPath = path.join(PUB, job.out);
+    mkdirSync(path.dirname(outPath), { recursive: true });
+
+    await sharp(srcPath)
+      .resize({ width: 1200, height: 1500, fit: 'cover', position: 'attention' })
+      .jpeg({ quality: 88, mozjpeg: true })
+      .toFile(outPath);
+
+    console.log(`${job.src} -> ${job.out}`);
+  }
+}
+
 async function processPhotos() {
   for (const job of JOBS) {
     const srcPath = path.join(SRC, job.src);
@@ -83,6 +120,7 @@ async function processBrandMark() {
 
 async function main() {
   await processPhotos();
+  await processProductPhotos();
   await processBrandMark();
 }
 

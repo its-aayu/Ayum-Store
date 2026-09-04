@@ -21,6 +21,8 @@ export type Product = {
   careInstructions?: string[];
   deliveryEstimate?: string;
   available: boolean;
+  /** No photography ready yet — shown blurred with a "Coming Soon" state, no variant selection or interest CTA. */
+  comingSoon?: boolean;
   featured?: boolean;
   tags?: string[];
   allowCustomDesign?: boolean;

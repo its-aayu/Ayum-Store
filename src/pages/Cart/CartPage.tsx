@@ -22,10 +22,10 @@ export function CartPage() {
   if (items.length === 0) {
     return (
       <>
-        <SeoHead title="Your Cart" description="Your AYUM cart." noIndex />
+        <SeoHead title="Your Interest List" description="Your AYUM interest list." noIndex />
         <Container className="flex min-h-[50vh] flex-col items-center justify-center gap-4 py-24 text-center">
           <ShoppingBag className="h-10 w-10 text-ink/30" aria-hidden="true" />
-          <p className="text-sm text-muted">Your cart is empty.</p>
+          <p className="text-sm text-muted">You haven't shown interest in anything yet.</p>
           <Link to="/shop" className={buttonClasses('primary', 'md')}>
             Explore Designs
           </Link>
@@ -36,9 +36,13 @@ export function CartPage() {
 
   return (
     <>
-      <SeoHead title="Your Cart" description="Review your AYUM order before continuing on WhatsApp." noIndex />
+      <SeoHead title="Your Interest List" description="Review your AYUM interest list before sending it on WhatsApp." noIndex />
       <Container className="py-10 sm:py-14">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Order Request</h1>
+        <h1 className="text-2xl font-semibold sm:text-3xl">Interest Request</h1>
+        <p className="mt-2 text-sm text-muted">
+          Pre-order only — every piece is limited to 50. This isn't a confirmed purchase; AYUM will reach out on
+          WhatsApp to confirm availability and next steps.
+        </p>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_360px]">
           <ul className="divide-y divide-border">
@@ -101,16 +105,16 @@ export function CartPage() {
           </ul>
 
           <div className="h-fit rounded-feature border border-border bg-white p-6">
-            <h2 className="text-base font-semibold">Order Summary</h2>
+            <h2 className="text-base font-semibold">Interest Summary</h2>
             <dl className="mt-4 space-y-2 text-sm">
               <div className="flex justify-between">
-                <dt className="text-muted">Subtotal</dt>
+                <dt className="text-muted">Estimated subtotal</dt>
                 <dd className="font-medium text-ink">{formatPrice(subtotal)}</dd>
               </div>
             </dl>
-            <p className="mt-3 text-xs text-muted">Shipping/payment: confirmed on WhatsApp.</p>
+            <p className="mt-3 text-xs text-muted">Availability, final price and delivery: confirmed on WhatsApp.</p>
             <Button variant="primary" size="lg" className="mt-6 w-full" onClick={handleContinueToWhatsApp}>
-              Continue to WhatsApp
+              Send Interest via WhatsApp
             </Button>
           </div>
         </div>

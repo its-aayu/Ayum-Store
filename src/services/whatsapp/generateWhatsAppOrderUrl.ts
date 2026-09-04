@@ -27,22 +27,26 @@ function formatItemBlock(item: CartItem): string {
   return lines.join('\n');
 }
 
-/** Builds the human-readable WhatsApp order message. Centralized so no component constructs this string itself. */
+/**
+ * Builds the human-readable WhatsApp interest message. Centralized so no component constructs
+ * this string itself. V1 is pre-order only — every product is a limited run of 50 pieces, and
+ * nothing here is a confirmed order until AYUM replies on WhatsApp.
+ */
 export function buildOrderMessage(order: OrderDraft): string {
   const itemBlocks = order.items.map(formatItemBlock).join('\n\n');
 
   return [
     'Hello AYUM!',
     '',
-    'I would like to place an order.',
+    "I'm interested in the following limited-edition piece(s) — only 50 of each are being made.",
     '',
-    `Order Reference: ${order.requestId}`,
+    `Reference: ${order.requestId}`,
     '',
     itemBlocks,
     '',
-    `Order Total: ${formatPrice(order.subtotal)}`,
+    `Estimated Total: ${formatPrice(order.subtotal)}`,
     '',
-    'Please confirm availability, final price and delivery details.',
+    "Please let me know about availability and how I can secure this before it's confirmed.",
   ].join('\n');
 }
 
@@ -59,4 +63,8 @@ export function generateServiceInquiryUrl(serviceName?: string): string {
 
 export function generateGeneralContactUrl(): string {
   return buildWhatsAppUrl('Hello AYUM! I have a question.');
+}
+
+export function generateCustomDesignInterestUrl(): string {
+  return buildWhatsAppUrl("Hello AYUM! Create Your Own looks great — please notify me when it's live.");
 }

@@ -12,8 +12,9 @@ const CATEGORY_FOLDER: Record<ProductCategory, string> = {
   mug: 'mugs',
 };
 
-const img = (category: ProductCategory, slug: string, n: 1 | 2) =>
-  `/assets/products/${CATEGORY_FOLDER[category]}/${slug}-${n}.png`;
+/** Real photography is .jpg; products still on the code-generated placeholder icon use .png. */
+const img = (category: ProductCategory, slug: string, n: 1 | 2, ext: 'jpg' | 'png' = 'png') =>
+  `/assets/products/${CATEGORY_FOLDER[category]}/${slug}-${n}.${ext}`;
 
 export const products: Product[] = [
   {
@@ -35,9 +36,9 @@ export const products: Product[] = [
     printMethod: 'Embroidery',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: true,
-    featured: true,
-    tags: ['bestseller'],
+    available: false,
+    comingSoon: true,
+    tags: [],
     allowCustomDesign: true,
   },
   {
@@ -58,7 +59,8 @@ export const products: Product[] = [
     printMethod: 'Screen print',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: true,
+    available: false,
+    comingSoon: true,
     tags: [],
     allowCustomDesign: true,
   },
@@ -80,9 +82,9 @@ export const products: Product[] = [
     printMethod: 'DTG print',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: true,
-    featured: true,
-    tags: ['new'],
+    available: false,
+    comingSoon: true,
+    tags: [],
     allowCustomDesign: true,
   },
   {
@@ -103,7 +105,8 @@ export const products: Product[] = [
     printMethod: 'DTG print',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: true,
+    available: false,
+    comingSoon: true,
     tags: [],
     allowCustomDesign: true,
   },
@@ -115,7 +118,7 @@ export const products: Product[] = [
     description: 'A dense, brushed-fleece hoodie built for cooler months — structured hood, ribbed cuffs.',
     price: 1799,
     currency: 'INR',
-    images: [img('hoodie', 'heavyweight-pullover-hoodie', 1), img('hoodie', 'heavyweight-pullover-hoodie', 2)],
+    images: [img('hoodie', 'heavyweight-pullover-hoodie', 1, 'jpg')],
     sizes: APPAREL_SIZES,
     colors: [
       { name: 'Obsidian Black', hex: '#161616' },
@@ -127,7 +130,7 @@ export const products: Product[] = [
     deliveryEstimate: '6–8 business days',
     available: true,
     featured: true,
-    tags: ['bestseller'],
+    tags: ['limited'],
     allowCustomDesign: true,
   },
   {
@@ -146,6 +149,7 @@ export const products: Product[] = [
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '6–8 business days',
     available: false,
+    comingSoon: true,
     tags: [],
     allowCustomDesign: true,
   },
@@ -157,7 +161,7 @@ export const products: Product[] = [
     description: 'A soft-pearl crewneck with a minimal crimson wordmark — an easy layering staple.',
     price: 1399,
     currency: 'INR',
-    images: [img('sweatshirt', 'crewneck-sweatshirt', 1), img('sweatshirt', 'crewneck-sweatshirt', 2)],
+    images: [img('sweatshirt', 'crewneck-sweatshirt', 1, 'jpg')],
     sizes: APPAREL_SIZES,
     colors: [
       { name: 'Soft Pearl', hex: '#F2F1ED' },
@@ -168,7 +172,7 @@ export const products: Product[] = [
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '6–8 business days',
     available: true,
-    tags: [],
+    tags: ['limited'],
     allowCustomDesign: true,
   },
   {
@@ -186,9 +190,9 @@ export const products: Product[] = [
     printMethod: 'Embroidery',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '6–8 business days',
-    available: true,
-    featured: true,
-    tags: ['new'],
+    available: false,
+    comingSoon: true,
+    tags: [],
     allowCustomDesign: true,
   },
   {
@@ -199,7 +203,7 @@ export const products: Product[] = [
     description: 'A structured six-panel cap with an embroidered crest and adjustable strap.',
     price: 599,
     currency: 'INR',
-    images: [img('cap', 'structured-cap', 1), img('cap', 'structured-cap', 2)],
+    images: [img('cap', 'structured-cap', 1, 'jpg')],
     sizes: ['One Size'],
     colors: [
       { name: 'Crimson Depth', hex: '#710014' },
@@ -210,7 +214,8 @@ export const products: Product[] = [
     careInstructions: ['Spot clean only'],
     deliveryEstimate: '5–7 business days',
     available: true,
-    tags: [],
+    featured: true,
+    tags: ['limited'],
     allowCustomDesign: false,
   },
   {
@@ -221,7 +226,7 @@ export const products: Product[] = [
     description: 'An unstructured, low-profile cap in warm sand — a relaxed everyday topper.',
     price: 549,
     currency: 'INR',
-    images: [img('cap', 'dad-cap', 1), img('cap', 'dad-cap', 2)],
+    images: [img('cap', 'dad-cap', 1, 'jpg')],
     sizes: ['One Size'],
     colors: [{ name: 'Warm Sand', hex: '#B38F6F' }],
     material: 'Cotton twill',
@@ -229,7 +234,7 @@ export const products: Product[] = [
     careInstructions: ['Spot clean only'],
     deliveryEstimate: '5–7 business days',
     available: true,
-    tags: [],
+    tags: ['limited'],
     allowCustomDesign: false,
   },
   {
@@ -240,14 +245,14 @@ export const products: Product[] = [
     description: 'An 11oz ceramic mug with a durable, dishwasher-safe print — original AYUM artwork.',
     price: 399,
     currency: 'INR',
-    images: [img('mug', 'ceramic-mug', 1), img('mug', 'ceramic-mug', 2)],
+    images: [img('mug', 'ceramic-mug', 1, 'jpg'), img('mug', 'ceramic-mug', 2, 'jpg')],
     colors: [{ name: 'Soft Pearl', hex: '#F2F1ED' }],
     material: 'Ceramic, 11oz',
     printMethod: 'Sublimation print',
     careInstructions: ['Dishwasher safe', 'Microwave safe'],
     deliveryEstimate: '4–6 business days',
     available: true,
-    tags: [],
+    tags: ['limited'],
     allowCustomDesign: true,
   },
   {
@@ -258,7 +263,7 @@ export const products: Product[] = [
     description: 'A matte-black 11oz mug with a warm sand print — a quiet daily ritual upgrade.',
     price: 449,
     currency: 'INR',
-    images: [img('mug', 'matte-black-mug', 1), img('mug', 'matte-black-mug', 2)],
+    images: [img('mug', 'matte-black-mug', 1, 'jpg'), img('mug', 'matte-black-mug', 2, 'jpg')],
     colors: [{ name: 'Obsidian Black', hex: '#161616' }],
     material: 'Ceramic, 11oz',
     printMethod: 'Sublimation print',
@@ -266,7 +271,7 @@ export const products: Product[] = [
     deliveryEstimate: '4–6 business days',
     available: true,
     featured: true,
-    tags: [],
+    tags: ['limited'],
     allowCustomDesign: true,
   },
 ];
