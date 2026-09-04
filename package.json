@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run generate:sitemap && tsc -b && vite build",
-    "generate:sitemap": "node scripts/generate-sitemap.ts",
+    "generate:sitemap": "node --env-file-if-exists=.env scripts/generate-sitemap.ts",
     "lint": "oxlint",
     "typecheck": "tsc -b",
     "test": "vitest run",

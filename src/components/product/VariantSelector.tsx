@@ -65,7 +65,7 @@ export function ColorSelector({ colors, value, onChange, error }: ColorSelectorP
               'h-9 w-9 rounded-full border-2 transition-transform',
               value === color.name ? 'border-brand-primary scale-110' : 'border-transparent',
             )}
-            style={{ boxShadow: `0 0 0 1px var(--color-border) inset` }}
+            style={{ boxShadow: 'inset 0 0 0 1.5px rgba(22, 22, 22, 0.3)' }}
           >
             <span
               className="block h-full w-full rounded-full"

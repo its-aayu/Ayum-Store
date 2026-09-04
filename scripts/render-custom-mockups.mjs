@@ -7,15 +7,18 @@ const GARMENT = '#161616';
 const OUTLINE = 'rgba(242,241,237,0.10)';
 const PRINT_GUIDE = 'rgba(242,241,237,0.18)';
 
-// Shared print-area rect (fraction of canvas) — MockupPreview positions uploaded
-// artwork using these same fractions so template and overlay always line up.
-const PRINT_AREA = { xPct: 0.33, yPct: 0.27, wPct: 0.34, hPct: 0.34 };
+// Print-area rects (fraction of canvas) — MockupPreview positions uploaded artwork
+// using these same fractions (mirrored in src/utils/garmentTemplate.ts) so template
+// and overlay always line up. Garments share one rect; the mug needs its own since
+// its printable area is a low, wide band instead of a tall chest rectangle.
+const TSHIRT_PRINT_AREA = { xPct: 0.33, yPct: 0.27, wPct: 0.34, hPct: 0.34 };
+const MUG_PRINT_AREA = { xPct: 0.3, yPct: 0.44, wPct: 0.4, hPct: 0.2 };
 
-function printGuideRect(width, height) {
-  const x = width * PRINT_AREA.xPct;
-  const y = height * PRINT_AREA.yPct;
-  const w = width * PRINT_AREA.wPct;
-  const h = height * PRINT_AREA.hPct;
+function printGuideRect(width, height, printArea) {
+  const x = width * printArea.xPct;
+  const y = height * printArea.yPct;
+  const w = width * printArea.wPct;
+  const h = height * printArea.hPct;
   return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="none" stroke="${PRINT_GUIDE}" stroke-width="2" stroke-dasharray="8 8" rx="6"/>`;
 }
 
@@ -42,10 +45,20 @@ function hoodieFront() {
   `;
 }
 
-function canvas(width, height, garmentSvg) {
+function mugFront() {
+  return `
+    <path d="M220 330 L220 690 Q220 730 400 730 Q580 730 580 690 L580 330"
+      fill="${GARMENT}" stroke="${OUTLINE}" stroke-width="3"/>
+    <ellipse cx="400" cy="330" rx="180" ry="26" fill="${GARMENT}" stroke="${OUTLINE}" stroke-width="3"/>
+    <path d="M580 400 Q680 400 680 500 Q680 600 580 600" fill="none" stroke="${GARMENT}" stroke-width="34" stroke-linecap="round"/>
+    <path d="M580 400 Q680 400 680 500 Q680 600 580 600" fill="none" stroke="${OUTLINE}" stroke-width="3"/>
+  `;
+}
+
+function canvas(width, height, garmentSvg, printArea) {
   return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
     ${garmentSvg}
-    ${printGuideRect(width, height)}
+    ${printGuideRect(width, height, printArea)}
   </svg>`;
 }
 
@@ -66,9 +79,10 @@ async function main() {
   const width = 800;
   const height = 1000;
 
-  await render(page, { body: canvas(width, height, teeFront()), width, height, outPath: path.join(ROOT, 'public/assets/custom/tshirt-front.png') });
-  await render(page, { body: canvas(width, height, teeBack()), width, height, outPath: path.join(ROOT, 'public/assets/custom/tshirt-back.png') });
-  await render(page, { body: canvas(width, height, hoodieFront()), width, height, outPath: path.join(ROOT, 'public/assets/custom/hoodie-front.png') });
+  await render(page, { body: canvas(width, height, teeFront(), TSHIRT_PRINT_AREA), width, height, outPath: path.join(ROOT, 'public/assets/custom/tshirt-front.png') });
+  await render(page, { body: canvas(width, height, teeBack(), TSHIRT_PRINT_AREA), width, height, outPath: path.join(ROOT, 'public/assets/custom/tshirt-back.png') });
+  await render(page, { body: canvas(width, height, hoodieFront(), TSHIRT_PRINT_AREA), width, height, outPath: path.join(ROOT, 'public/assets/custom/hoodie-front.png') });
+  await render(page, { body: canvas(width, height, mugFront(), MUG_PRINT_AREA), width, height, outPath: path.join(ROOT, 'public/assets/custom/mug-front.png') });
 
   await browser.close();
 }
