@@ -266,7 +266,7 @@ export function CustomDesignPage() {
 
             {product && (
               <div className="mt-6 rounded-feature border border-border bg-white p-5">
-                <h3 className="text-sm font-semibold">Order Request</h3>
+                <h3 className="text-sm font-semibold">Interest Request</h3>
                 <dl className="mt-3 space-y-1.5 text-sm">
                   <div className="flex justify-between">
                     <dt className="text-muted">Product</dt>
@@ -285,13 +285,17 @@ export function CustomDesignPage() {
                 <div className="mt-5 flex flex-col gap-3">
                   <Button variant="primary" size="lg" onClick={handleAddToCart}>
                     <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-                    {confirmation === 'added' ? 'Added to cart' : 'Add to cart'}
+                    {confirmation === 'added' ? 'Added to your interest list' : 'Show Interest'}
                   </Button>
                   <Button variant="outline" size="lg" onClick={handleOrderOnWhatsApp}>
                     <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                    Continue on WhatsApp
+                    Message on WhatsApp
                   </Button>
                 </div>
+                <p className="mt-3 text-xs text-muted">
+                  This is a pre-order request, not a confirmed purchase. AYUM will reach out on WhatsApp to confirm
+                  print quality, availability and next steps before any payment.
+                </p>
 
                 <div className="mt-5 border-t border-border pt-4">
                   <QualityNote />

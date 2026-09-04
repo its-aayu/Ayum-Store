@@ -4,7 +4,7 @@ import path from 'node:path';
 import { products } from '../src/data/products.ts';
 import { categories } from '../src/data/categories.ts';
 
-const siteUrl = process.env.VITE_SITE_URL || 'https://ayum.com';
+const siteUrl = (process.env.VITE_SITE_URL || 'https://ayum.com').replace(/\/+$/, '');
 
 const staticRoutes = [
   '/',

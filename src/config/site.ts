@@ -5,6 +5,7 @@
  */
 
 const digitsOnly = (value: string) => value.replace(/[^\d]/g, '');
+const stripTrailingSlash = (value: string) => value.replace(/\/+$/, '');
 
 export const siteConfig = {
   brand: {
@@ -19,7 +20,7 @@ export const siteConfig = {
     supportEmail: import.meta.env.VITE_SUPPORT_EMAIL || '',
     instagramUrl: import.meta.env.VITE_INSTAGRAM_URL || '',
   },
-  siteUrl: import.meta.env.VITE_SITE_URL || 'https://ayum.com',
+  siteUrl: stripTrailingSlash(import.meta.env.VITE_SITE_URL || 'https://ayum.com'),
   cloudinary: {
     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || '',
   },
