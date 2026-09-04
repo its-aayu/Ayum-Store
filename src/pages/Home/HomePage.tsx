@@ -125,14 +125,11 @@ export function HomePage() {
       {/* Custom design CTA */}
       <section className="py-16 sm:py-20">
         <Container className="flex flex-col items-center gap-6 rounded-feature bg-brand-primary px-6 py-14 text-center text-white sm:py-20">
-          <span className="rounded-pill bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
-            Coming soon
-          </span>
           <h2 className="max-w-xl font-display text-3xl font-semibold sm:text-4xl">
             Have a design in mind? Bring it to life.
           </h2>
           <p className="max-w-md text-sm text-white/80">
-            Upload-your-own-artwork is on its way. Leave your interest now and we'll notify you the moment it opens.
+            Upload your own artwork, preview it instantly, and show interest in AYUM apparel and products.
           </p>
           <Link to="/custom" className="inline-flex h-13 items-center justify-center rounded-button bg-white px-8 text-base font-medium text-brand-primary hover:bg-white/90">
             Create Your Own

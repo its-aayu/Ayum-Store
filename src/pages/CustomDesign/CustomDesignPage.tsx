@@ -26,7 +26,7 @@ const customizableProducts = products.filter((p) => p.allowCustomDesign && p.ava
 
 // The upload → preview → order flow below is fully built and tested, but not opened to
 // customers yet. Flip this to re-enable it — nothing else needs to change.
-const CUSTOM_DESIGN_ENABLED = false;
+const CUSTOM_DESIGN_ENABLED = true;
 
 const HOW_IT_WORKS = [
   { icon: Upload, title: 'Upload', body: 'Add your artwork — PNG, JPG, WEBP or PDF, up to 10 MB.' },
@@ -144,8 +144,7 @@ export function CustomDesignPage() {
             Your design. Our craft.
           </h1>
           <p className="max-w-lg text-sm text-white/80 sm:text-base">
-            Upload your artwork, preview it instantly, and we'll review it personally before anything goes to
-            print — launching soon.
+            Upload your artwork, preview it instantly, and we'll review it personally before anything goes to print.
           </p>
         </Container>
       </section>

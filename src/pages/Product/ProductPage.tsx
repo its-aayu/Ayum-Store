@@ -223,7 +223,7 @@ export function ProductPage() {
                     className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand-primary hover:underline"
                   >
                     <Palette className="h-4 w-4" aria-hidden="true" />
-                    Want your own design on this? Create Your Own — coming soon
+                    Want your own design on this? Create Your Own
                   </Link>
                 )}
 
