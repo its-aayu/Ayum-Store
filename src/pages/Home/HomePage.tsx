@@ -7,12 +7,14 @@ import { buttonClasses } from '@/components/common/Button';
 import { SeoHead } from '@/components/common/SeoHead';
 import { StructuredData } from '@/components/common/StructuredData';
 import { ProductCard } from '@/components/product/ProductCard';
+import { ComingSoonOverlay } from '@/components/product/ComingSoonOverlay';
 import { TrustBadge } from '@/components/trust/TrustBadge';
 import { FAQAccordion } from '@/components/trust/FAQAccordion';
 import { getFeaturedProducts, getProductsByCategory } from '@/data/products';
 import { categories } from '@/data/categories';
 import { faqs } from '@/data/faq';
 import { siteConfig } from '@/config/site';
+import { cn } from '@/utils/cn';
 
 export function HomePage() {
   const featured = getFeaturedProducts();
@@ -94,16 +96,23 @@ export function HomePage() {
           <h2 className="mb-8 text-2xl font-semibold sm:text-3xl">Shop by Category</h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {categories.map((category) => {
-              const representative = getProductsByCategory(category.id)[0];
+              const categoryProducts = getProductsByCategory(category.id);
+              const representative = categoryProducts.find((p) => p.available) ?? categoryProducts[0];
               return (
                 <Link key={category.id} to={`/shop/${category.slug}`} className="group block text-center">
                   {representative && (
-                    <Image
-                      src={representative.images[0]}
-                      alt={category.label}
-                      aspectRatio="1 / 1"
-                      className="rounded-card transition-transform duration-[var(--duration-slow)] group-hover:scale-[1.03]"
-                    />
+                    <div className="relative overflow-hidden rounded-card">
+                      <Image
+                        src={representative.images[0]}
+                        alt={category.label}
+                        aspectRatio="1 / 1"
+                        className={cn(
+                          'transition-transform duration-[var(--duration-slow)]',
+                          representative.comingSoon ? 'scale-110 blur-md' : 'group-hover:scale-[1.03]',
+                        )}
+                      />
+                      {representative.comingSoon && <ComingSoonOverlay />}
+                    </div>
                   )}
                   <p className="mt-2 text-sm font-medium text-ink">{category.label}</p>
                 </Link>
