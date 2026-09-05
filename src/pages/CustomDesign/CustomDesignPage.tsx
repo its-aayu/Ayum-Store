@@ -60,6 +60,7 @@ export function CustomDesignPage() {
   const [colorError, setColorError] = useState<string>();
   const [copyrightError, setCopyrightError] = useState<string>();
   const [confirmation, setConfirmation] = useState<'idle' | 'added'>('idle');
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   const product = customizableProducts.find((p) => p.id === productId);
   const garmentTemplate = product ? getGarmentTemplate(product.category) : null;
@@ -86,6 +87,7 @@ export function CustomDesignPage() {
   }
 
   function handleAddToCart() {
+    setSubmitAttempted(true);
     if (!validate() || !product || !upload.design) return;
     addItem({
       productId: product.id,
@@ -102,6 +104,7 @@ export function CustomDesignPage() {
   }
 
   function handleOrderOnWhatsApp() {
+    setSubmitAttempted(true);
     if (!validate() || !product || !upload.design) return;
     openOrder({
       requestId: generateOrderRequestId(),
@@ -289,7 +292,7 @@ export function CustomDesignPage() {
                     disabled={upload.state !== 'success'}
                   >
                     <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-                    {confirmation === 'added' ? 'Added to your interest list' : 'Show Interest'}
+                    {confirmation === 'added' ? 'Design request added' : 'Submit Design Request'}
                   </Button>
                   <Button
                     variant="outline"
@@ -304,6 +307,11 @@ export function CustomDesignPage() {
                 {upload.state !== 'success' && (
                   <p className="mt-3 text-xs font-medium text-brand-primary">
                     Upload your design above to continue.
+                  </p>
+                )}
+                {submitAttempted && upload.state === 'success' && (sizeError || colorError || copyrightError) && (
+                  <p className="mt-3 text-xs font-medium text-error">
+                    Please choose your options and confirm rights above before continuing.
                   </p>
                 )}
                 <p className="mt-3 text-xs text-muted">
