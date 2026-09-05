@@ -282,15 +282,30 @@ export function CustomDesignPage() {
                 </dl>
 
                 <div className="mt-5 flex flex-col gap-3">
-                  <Button variant="primary" size="lg" onClick={handleAddToCart}>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={handleAddToCart}
+                    disabled={upload.state !== 'success'}
+                  >
                     <ShoppingBag className="h-4 w-4" aria-hidden="true" />
                     {confirmation === 'added' ? 'Added to your interest list' : 'Show Interest'}
                   </Button>
-                  <Button variant="outline" size="lg" onClick={handleOrderOnWhatsApp}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={handleOrderOnWhatsApp}
+                    disabled={upload.state !== 'success'}
+                  >
                     <MessageCircle className="h-4 w-4" aria-hidden="true" />
                     Message on WhatsApp
                   </Button>
                 </div>
+                {upload.state !== 'success' && (
+                  <p className="mt-3 text-xs font-medium text-brand-primary">
+                    Upload your design above to continue.
+                  </p>
+                )}
                 <p className="mt-3 text-xs text-muted">
                   This is a pre-order request, not a confirmed purchase. AYUM will reach out on WhatsApp to confirm
                   print quality, availability and next steps before any payment.
