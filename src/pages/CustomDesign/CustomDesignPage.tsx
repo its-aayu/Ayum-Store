@@ -259,6 +259,8 @@ export function CustomDesignPage() {
                 productImage={garmentTemplate?.image ?? product.images[0]}
                 productName={product.name}
                 designPreviewUrl={upload.design?.previewUrl}
+                designWidth={upload.design?.width}
+                designHeight={upload.design?.height}
                 printArea={garmentTemplate?.printArea}
                 cardBackground={garmentTemplate ? 'dark' : 'white'}
               />
