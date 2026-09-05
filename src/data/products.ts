@@ -49,7 +49,7 @@ export const products: Product[] = [
     description: 'A minimal wordmark tee in a soft, breathable cotton — built for daily rotation.',
     price: 749,
     currency: 'INR',
-    images: [img('tshirt', 'monochrome-logo-tee', 1), img('tshirt', 'monochrome-logo-tee', 2)],
+    images: [img('tshirt', 'monochrome-logo-tee', 1, 'jpg'), img('tshirt', 'monochrome-logo-tee', 2, 'jpg')],
     sizes: APPAREL_SIZES,
     colors: [
       { name: 'Soft Pearl', hex: '#F2F1ED' },
@@ -59,9 +59,8 @@ export const products: Product[] = [
     printMethod: 'Screen print',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: false,
-    comingSoon: true,
-    tags: [],
+    available: true,
+    tags: ['limited'],
     allowCustomDesign: true,
   },
   {
@@ -72,7 +71,7 @@ export const products: Product[] = [
     description: 'A boxy, dropped-shoulder silhouette carrying an original AYUM graphic across the chest.',
     price: 899,
     currency: 'INR',
-    images: [img('oversized', 'oversized-graphic-tee', 1), img('oversized', 'oversized-graphic-tee', 2)],
+    images: [img('oversized', 'oversized-graphic-tee', 1, 'jpg')],
     sizes: APPAREL_SIZES,
     colors: [
       { name: 'Crimson Depth', hex: '#710014' },
@@ -82,9 +81,8 @@ export const products: Product[] = [
     printMethod: 'DTG print',
     careInstructions: APPAREL_CARE,
     deliveryEstimate: '5–7 business days',
-    available: false,
-    comingSoon: true,
-    tags: [],
+    available: true,
+    tags: ['limited'],
     allowCustomDesign: true,
   },
   {

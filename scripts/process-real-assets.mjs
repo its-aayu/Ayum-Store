@@ -32,13 +32,15 @@ const MAX_DIMENSION = 1920;
 // non-infringing photos are listed here — see README/AYUM-IMPLEMENTATION.md notes on the
 // products still marked `comingSoon` in src/data/products.ts.
 const PRODUCT_JOBS = [
-  // Oversized Graphic Tee and Classic Crest Tee are deliberately NOT listed here — the source
-  // photos provided for them (src/assets/Oversized Graphic Tee*.jpeg, Classic Crest Tee*.jpeg)
-  // are real photos of unlicensed anime merchandise (Bleach / Jujutsu Kaisen / One Piece), not
-  // AYUM designs. Both products stay on `comingSoon: true` in src/data/products.ts until real,
-  // rights-cleared photography exists — do not add jobs for those filenames.
+  // Classic Crest Tee is deliberately NOT listed here — the original source photos provided for
+  // it (src/assets/Classic Crest Tee*.jpeg) are real photos of unlicensed anime merchandise
+  // (Jujutsu Kaisen / One Piece / Bleach), not AYUM designs. It stays on `comingSoon: true` in
+  // src/data/products.ts until real, rights-cleared photography exists.
   // Heavyweight Pullover Hoodie — Back.jpeg is also excluded: it shows unlicensed Demon Slayer
   // merchandise, not an AYUM design. The product ships with only its front photo.
+  // Note: the old "Oversized Graphic Tee*.jpeg" files (also unlicensed anime merch) are still on
+  // disk and still excluded — the new 'oversized tee.jpeg' job below is a different, original
+  // AYUM graphic that replaces them.
   { src: 'Heavyweight Pullover Hoodie — Front.jpeg', out: 'products/hoodies/heavyweight-pullover-hoodie-1.jpg' },
   { src: 'crewneck sweatshirt.png', out: 'products/sweatshirts/crewneck-sweatshirt-1.jpg' },
   { src: 'Structured Cap.jpeg', out: 'products/caps/structured-cap-1.jpg' },
@@ -47,6 +49,9 @@ const PRODUCT_JOBS = [
   { src: 'Ceramic Mug — another angle Angle.jpeg', out: 'products/mugs/ceramic-mug-2.jpg' },
   { src: 'Matte Black Mug — Front.jpeg', out: 'products/mugs/matte-black-mug-1.jpg' },
   { src: 'Matte Black Mug — another angel.jpeg', out: 'products/mugs/matte-black-mug-2.jpg' },
+  { src: 'tee.jpeg', out: 'products/tshirts/monochrome-logo-tee-1.jpg' },
+  { src: 'crimision tee back.jpeg', out: 'products/tshirts/monochrome-logo-tee-2.jpg' },
+  { src: 'oversized tee.jpeg', out: 'products/oversized/oversized-graphic-tee-1.jpg' },
 ];
 
 async function processProductPhotos() {
